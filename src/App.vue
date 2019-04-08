@@ -10,13 +10,11 @@
 
 <script>
 import Header from "./views/Header";
-import Rockets from "./components/Rockets";
 
 export default {
   name: "App",
   components: {
-    Header,
-    Rockets
+    Header
   },
   data: function() {
     return {
