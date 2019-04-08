@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <Header msg="Hello Vue!"/>
+    <Header v-once :msg="message"/>
+    <!-- <Header :msg="message"/> -->
     <transition name="slide-fade">
       <router-view/>
     </transition>
@@ -16,6 +17,11 @@ export default {
   components: {
     Header,
     Rockets
+  },
+  data: function() {
+    return {
+      message: "Hello Vue!"
+    };
   }
 };
 </script>
