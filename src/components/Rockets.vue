@@ -1,47 +1,52 @@
 <template>
-  <section class="rockets" >
-    <div v-if="rockets.length">
-      <div v-for="rocket in rockets" :key="rocket.id">
-        <RocketView :rocket-data="rocket" />
+  <section class="rockets row">
+    <div class="row" v-if="rockets.length">
+      <div class="col-12 col-sm-6" v-for="rocket in rockets" :key="rocket.id">
+        <RocketView :rocket-data="rocket"/>
       </div>
     </div>
     <div v-else>
-      Loading... 
-      <Loading />
+      <Loading/>
     </div>
   </section>
 </template>
 
 <script>
-import axios from 'axios';
-import RocketView from '@/views/RocketView';
+import axios from "axios";
+import RocketView from "@/views/RocketView";
 export default {
-  name: 'Rockets',
-  components:{
+  name: "Rockets",
+  components: {
     RocketView
   },
   data() {
     return {
       rockets: []
-    }
+    };
+  },
+  beforeCreate() {
+    console.log("this is beforeCreate hook");
   },
   created() {
     console.log("this is created hook");
   },
-  async mounted() {
-    console.log('This is mounted hook');
-    setTimeout(() => {
+  mounted() {
+    console.log("This is mounted hook");
+    // setTimeout(() => {
     this.getRockets();
-    // Timeout Logic
-    }, 10000);
-    
+    // }, 5000);
   },
   methods: {
     async getRockets() {
-      const rocketsData = await axios.get('https://api.spacexdata.com/v3/rockets');
+      const rocketsData = await axios.get(
+        "https://api.spacexdata.com/v3/rockets"
+      );
       this.rockets = rocketsData.data;
       console.log("rockets", this.rockets);
     }
+  },
+  destroyed() {
+    console.log("component is destroyed");
   }
-}
+};
 </script>
