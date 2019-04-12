@@ -6,7 +6,7 @@
       </div>
     </div>
     <div v-else>
-      <Loading/>
+      <Loading />
     </div>
   </section>
 </template>
