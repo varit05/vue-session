@@ -20,7 +20,7 @@ Vue.filter("currency", value => {
 });
 // Global component
 Vue.component("Loading", {
-  template: '<img :src="loadingImage" />',
+  template: '<img :src="loadingImage" alt="loading Image" />',
   data() {
     return {
       loadingImage: LoadingImage
