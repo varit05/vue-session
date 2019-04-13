@@ -1,13 +1,15 @@
 <template>
   <section class="rockets">
-    <div class="row" v-if="rockets.length">
-      <div class="col-12 col-sm-6" v-for="rocket in rockets" :key="rocket.id">
-        <RocketView :rocket-data="rocket"/>
+    <transition name="slide-fade" mode="out-in">
+      <div class="row" v-if="rockets.length">
+        <div class="col-12 col-sm-6" v-for="rocket in rockets" :key="rocket.id">
+          <RocketView :rocket-data="rocket"/>
+        </div>
       </div>
-    </div>
-    <div v-else>
-      <Loading></Loading>
-    </div>
+      <div v-else>
+        <Loading></Loading>
+      </div>
+    </transition>
   </section>
 </template>
 
@@ -32,9 +34,9 @@ export default {
   },
   mounted() {
     console.log("This is mounted hook");
-    // setTimeout(() => {
-    this.getRockets();
-    // }, 5000);
+    setTimeout(() => {
+      this.getRockets();
+    }, 5000);
   },
   methods: {
     async getRockets() {

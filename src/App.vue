@@ -37,26 +37,14 @@ export default {
   color: #2c3e50;
 }
 
-.slide-fade-enter-active {
-  transition: opacity 0.25s ease-out;
-}
+.slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: opacity 0.25s ease-in;
-}
-.slide-fade-enter,
-.slide-fade-leave-to {
-  transform: translateX(10px);
-  opacity: 0;
+  transition: opacity 1s, transform 1s;
 }
 
-/* .slide-fade-enter-active {
-  transition: all 0.3s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateX(10px);
+.slide-fade-enter,
+.slide-fade-leave-to {
   opacity: 0;
-} */
+  transform: translateX(-50%);
+}
 </style>
