@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <Header v-once :msg="message"/>
+    <Header v-once :msg="message">
+      <template v-slot:header>
+        <div>Custom Header</div>
+      </template>
+    </Header>
     <!-- <Header :msg="message"/> -->
     <transition name="slide-fade">
       <router-view/>

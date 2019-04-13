@@ -3,7 +3,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-inverse bg-inverse">
       <a class="navbar-brand" href="#">{{msg}}</a>
       <a class="navbar-brand" href="#">
-        <slot>default Header</slot>
+        <slot name="header">
+          <div>default Header</div>
+        </slot>
       </a>
       <button
         class="navbar-toggler"

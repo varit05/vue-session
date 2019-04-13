@@ -55,6 +55,7 @@
 </template>
 
 <script>
+const slides = 3;
 export default {
   name: "Rocket",
   data() {
@@ -67,11 +68,9 @@ export default {
   },
   methods: {
     changeSlides(index) {
-      console.log("Index", this.activeIndex);
-      if (this.activeIndex >= 1) {
+      this.activeIndex += index;
+      if (this.activeIndex >= slides || this.activeIndex <= 0) {
         this.activeIndex = 0;
-      } else {
-        this.activeIndex += index;
       }
     },
     goToLaunches(rocketId) {
@@ -82,7 +81,7 @@ export default {
     // a computed getter
     img: function() {
       return this.rocketData.flickr_images.filter(function(image, index) {
-        if (index >= 4) {
+        if (index >= slides) {
           return false;
         } else {
           return image;
@@ -93,8 +92,8 @@ export default {
   watch: {
     // You can only watch on the existing defined data under data options or computed options
     activeIndex(prev, next) {
-      console.log(prev);
-      console.log(next);
+      console.log("watch prev", prev);
+      console.log("watch next", next);
     }
   }
 };
