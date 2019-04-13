@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Header v-once :msg="message">
-      <template v-slot:header>
-        <div>Custom Header</div>
+      <template v-slot:header="{group}">
+        <div>Hello {{group}}</div>
       </template>
     </Header>
     <!-- <Header :msg="message"/> -->

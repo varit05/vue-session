@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-inverse bg-inverse">
       <a class="navbar-brand" href="#">{{msg}}</a>
       <a class="navbar-brand" href="#">
-        <slot name="header">
+        <slot name="header" :group="webstack">
           <div>default Header</div>
         </slot>
       </a>
@@ -37,6 +37,11 @@ export default {
   name: "Header",
   props: {
     msg: String
+  },
+  data() {
+    return {
+      webstack: "Webstackers"
+    };
   }
 };
 </script>
