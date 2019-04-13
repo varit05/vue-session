@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-    <Header v-once :msg="message"/>
+    <Header v-once :msg="message">
+      <template v-slot:header="{group}">
+        <div>Hello {{group}}</div>
+      </template>
+    </Header>
     <!-- <Header :msg="message"/> -->
-    <transition name="slide-fade">
+    <transition name="slide-fade" mode="out-in">
       <router-view/>
     </transition>
   </div>
@@ -33,15 +37,14 @@ export default {
   color: #2c3e50;
 }
 
-.slide-fade-enter-active {
-  transition: all 0.3s ease;
-}
+.slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: opacity 1s, transform 1s;
 }
-.slide-fade-enter, .slide-fade-leave-to
-  /* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
+
+.slide-fade-enter,
+.slide-fade-leave-to {
   opacity: 0;
+  transform: translateX(-50%);
 }
 </style>

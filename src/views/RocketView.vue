@@ -2,7 +2,9 @@
   <section class="rocket text-center mt-3">
     <div v-if="rocketData.id">
       <div class="row">
-        <h3 class="col-12" v-text="rocketData.rocket_name"></h3>
+        <router-link class="col-12" :to="{ path: '/rocket/'+rocketData.rocket_id }">
+          <h3 v-text="rocketData.rocket_name"></h3>
+        </router-link>
       </div>
       <div class="row">
         <div class="col-10 offset-1">
@@ -34,49 +36,44 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" v-cloak>
           <p class="ml-5 text-center">{{rocketData.cost_per_launch | currency}}</p>
         </div>
         <div class="col-8 offset-2">
           <h6 v-once v-text="rocketData.description"></h6>
           <button
             class="btn btn-outline-success"
-            @click="launches(rocketData.rocket_id)"
+            @click="goToLaunches(rocketData.rocket_id)"
           >View Launches</button>
         </div>
       </div>
     </div>
-    <div v-else>Loading...</div>
+    <div v-else>
+      <Loading/>
+    </div>
   </section>
 </template>
 
 <script>
+const slides = 3;
 export default {
   name: "Rocket",
   data() {
     return {
-      activeIndex: 0,
-      prevDisable: true
+      activeIndex: 0
     };
   },
   props: {
     rocketData: Object
   },
-  mounted() {
-    // console.log(this.rocketData);
-  },
   methods: {
     changeSlides(index) {
-      console.log("Index", this.activeIndex);
-      if (this.activeIndex >= 1) {
+      this.activeIndex += index;
+      if (this.activeIndex >= slides || this.activeIndex <= 0) {
         this.activeIndex = 0;
-      } else {
-        this.activeIndex += index;
       }
     },
-    launches(rocketId) {
-      console.log(rocketId);
-      console.log(this);
+    goToLaunches(rocketId) {
       this.$router.push({ path: `/lanches/${rocketId}` });
     }
   },
@@ -84,12 +81,19 @@ export default {
     // a computed getter
     img: function() {
       return this.rocketData.flickr_images.filter(function(image, index) {
-        if (index >= 4) {
+        if (index >= slides) {
           return false;
         } else {
           return image;
         }
       });
+    }
+  },
+  watch: {
+    // You can only watch on the existing defined data under data options or computed options
+    activeIndex(prev, next) {
+      console.log("watch prev", prev);
+      console.log("watch next", next);
     }
   }
 };

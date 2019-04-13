@@ -5,6 +5,7 @@ import App from "./App.vue";
 import Rockets from "@/components/Rockets";
 import Rocket from "@/components/Rocket";
 import Launch from "@/components/Launch";
+import Dragon from "@/components/Dragon";
 import LoadingImage from "@/assets/loading.gif";
 Vue.config.productionTip = false;
 
@@ -19,7 +20,7 @@ Vue.filter("currency", value => {
 });
 // Global component
 Vue.component("Loading", {
-  template: '<img :src="loadingImage" />',
+  template: '<img :src="loadingImage" alt="loading Image" />',
   data() {
     return {
       loadingImage: LoadingImage
@@ -31,7 +32,8 @@ const router = new VueRouter({
   mode: "history",
   routes: [
     { path: "/", component: Rockets },
-    { path: "/rocket", component: Rocket },
+    { path: "/rocket/:rocketId", component: Rocket },
+    { path: "/dragon", component: Dragon },
     { path: "/lanches/:id", component: Launch }
   ]
 });

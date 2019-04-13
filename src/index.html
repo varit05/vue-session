@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Webstack Vue</title>
+  </head>
+  <body>
+    <section id="app1">
+      {{ message1 }}
+    </section>
+
+    <section id="app2">
+      {{ message2 }}
+    </section>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      const app1 = new Vue({
+        el: "#app1",
+        //options
+        data: {
+          message1: "Message from app1"
+        }
+      });
+
+      const app2 = new Vue({
+        el: "#app2",
+        //options
+        data: {
+          message2: "Message from app2"
+        }
+      });
+    </script>
+  </body>
+</html>

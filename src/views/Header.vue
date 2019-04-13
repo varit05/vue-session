@@ -2,6 +2,11 @@
   <div class="hello">
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-inverse bg-inverse">
       <a class="navbar-brand" href="#">{{msg}}</a>
+      <a class="navbar-brand" href="#">
+        <slot name="header" :group="webstack">
+          <div>default Header</div>
+        </slot>
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -19,7 +24,7 @@
             <router-link class="nav-link" :to="{path: '/'}" exact>Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{path: '/rocket'}" exact>Rocket</router-link>
+            <router-link class="nav-link" :to="{path: '/dragon'}" exact>Dragon</router-link>
           </li>
         </ul>
       </div>
@@ -32,6 +37,11 @@ export default {
   name: "Header",
   props: {
     msg: String
+  },
+  data() {
+    return {
+      webstack: "Webstackers"
+    };
   }
 };
 </script>
