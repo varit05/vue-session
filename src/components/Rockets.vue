@@ -1,15 +1,13 @@
 <template>
   <section class="rockets">
-    <transition name="slide-fade" mode="out-in">
-      <div class="row" v-if="rockets.length">
-        <div class="col-12 col-sm-6" v-for="rocket in rockets" :key="rocket.id">
-          <RocketView :rocket-data="rocket"/>
-        </div>
+    <div class="row" v-if="rockets.length">
+      <div class="col-12 col-sm-6" v-for="rocket in rockets" :key="rocket.id">
+        <RocketView :rocket-data="rocket"/>
       </div>
-      <div v-else>
-        <Loading></Loading>
-      </div>
-    </transition>
+    </div>
+    <div v-else>
+      <Loading></Loading>
+    </div>
   </section>
 </template>
 
